@@ -2405,12 +2405,15 @@ export class OpenSeaPort {
       await this._wyvernProtocolReadOnly.wyvernProxyRegistry.registerProxy.estimateGasAsync(
         txnData
       );
+
+    const param = {
+      ...txnData,
+      gas: this._correctGasAmount(gasEstimate),
+    };
+
     const transactionHash =
       await this._wyvernProtocol.wyvernProxyRegistry.registerProxy.sendTransactionAsync(
-        {
-          ...txnData,
-          gas: this._correctGasAmount(gasEstimate),
-        }
+        param
       );
 
     console.log("---------,_initializeProxy = " + transactionHash);
