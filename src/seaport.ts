@@ -2413,6 +2413,8 @@ export class OpenSeaPort {
         }
       );
 
+    console.log("---------,_initializeProxy = " + transactionHash);
+
     await this._confirmTransaction(
       transactionHash,
       EventType.InitializeAccount,
@@ -2422,6 +2424,8 @@ export class OpenSeaPort {
         return !!polledProxy;
       }
     );
+
+    console.log("---------,_initializeProxy2 = " + transactionHash);
 
     const proxyAddress = await this._getProxy(accountAddress, 10);
     if (!proxyAddress) {
