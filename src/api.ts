@@ -131,8 +131,6 @@ export class OpenSeaAPI {
       limit: 1,
       ...query,
     });
-    result = result.data;
-
     let orderJSON;
     if (ORDERBOOK_VERSION == 0) {
       const json = result as OrderJSON[];
@@ -201,7 +199,6 @@ export class OpenSeaAPI {
       json = await this.get(
         `${API_PATH}/asset/${tokenAddress}/${tokenId || 0}/`
       );
-      json = json.data;
     } catch (error) {
       _throwOrContinue(error, retries);
       await delay(1000);
@@ -255,7 +252,6 @@ export class OpenSeaAPI {
         limit: this.pageSize,
         offset: (page - 1) * this.pageSize,
       });
-      json = json.data;
     } catch (error) {
       _throwOrContinue(error, retries);
       await delay(1000);
