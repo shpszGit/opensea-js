@@ -86,7 +86,7 @@ export class OpenSeaAPI {
     let json;
     try {
       json = (await this.post(
-        `${ORDERBOOK_PATH}/orders/post/`,
+        `${ORDERBOOK_PATH}/orders/post`,
         order
       )) as OrderJSON;
     } catch (error) {
