@@ -61,5 +61,5 @@ export const SITE_HOST_RINKEBY = "https://rinkeby.opensea.io";
 export const RPC_URL_PATH = "api/v1/";
 export const MAINNET_PROVIDER_URL = `https://mainnet.infura.io/v3/b5292b0baa094c2e89167e5160ac225c`;
 export const RINKEBY_PROVIDER_URL = `https://rinkeby.infura.io/v3/b5292b0baa094c2e89167e5160ac225c`;
-export const ORDERBOOK_PATH = `/v${ORDERBOOK_VERSION}`;
+export const ORDERBOOK_PATH = `api/v${ORDERBOOK_VERSION}`;
 export const API_PATH = `/api/v${ORDERBOOK_VERSION}`;
