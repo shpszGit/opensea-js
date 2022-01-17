@@ -3481,11 +3481,11 @@ export class OpenSeaPort {
             `Failed on-chain ownership check: ${accountAddress} on ${schemaName}:`,
             wyAsset
           );
-          throw new Error(
-            `You don't own enough to do that (${minAmount} base units of ${
-              wyAsset.address
-            }${wyAsset.id ? " token " + wyAsset.id : ""})`
-          );
+          // throw new Error(
+          //   `You don't own enough to do that (${minAmount} base units of ${
+          //     wyAsset.address
+          //   }${wyAsset.id ? " token " + wyAsset.id : ""})`
+          // );
         }
         switch (schemaName) {
           case WyvernSchemaName.ERC721:
