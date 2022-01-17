@@ -2057,11 +2057,11 @@ export class OpenSeaPort {
     let maxTotalBountyBPS = DEFAULT_MAX_BOUNTY;
 
     if (asset) {
-      openseaBuyerFeeBasisPoints = +asset.collection.openseaBuyerFeeBasisPoints;
-      openseaSellerFeeBasisPoints =
-        +asset.collection.openseaSellerFeeBasisPoints;
-      devBuyerFeeBasisPoints = +asset.collection.devBuyerFeeBasisPoints;
-      devSellerFeeBasisPoints = +asset.collection.devSellerFeeBasisPoints;
+      // openseaBuyerFeeBasisPoints = +asset.collection.openseaBuyerFeeBasisPoints;
+      // openseaSellerFeeBasisPoints =
+      //   +asset.collection.openseaSellerFeeBasisPoints;
+      // devBuyerFeeBasisPoints = +asset.collection.devBuyerFeeBasisPoints;
+      // devSellerFeeBasisPoints = +asset.collection.devSellerFeeBasisPoints;
 
       maxTotalBountyBPS = openseaSellerFeeBasisPoints;
     }
@@ -2173,7 +2173,7 @@ export class OpenSeaPort {
     this.logger("Order hashes match");
 
     // Validation is called server-side
-    const confirmedOrder = await this.api.postOrder(orderToJSON(order));
+    // const confirmedOrder = await this.api.postOrder(orderToJSON(order));
     return confirmedOrder;
   }
 
