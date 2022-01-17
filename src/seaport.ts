@@ -116,7 +116,7 @@ import {
   isContractAddress,
   makeBigNumber,
   onDeprecated,
-  orderToJSON,
+  // orderToJSON,
   personalSignAsync,
   promisifyCall,
   rawCall,
