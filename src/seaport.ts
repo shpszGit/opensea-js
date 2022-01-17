@@ -2174,7 +2174,8 @@ export class OpenSeaPort {
 
     // Validation is called server-side
     // const confirmedOrder = await this.api.postOrder(orderToJSON(order));
-    return confirmedOrder;
+    // return confirmedOrder;
+    return order;
   }
 
   /**
