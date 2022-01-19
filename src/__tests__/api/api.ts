@@ -42,7 +42,7 @@ const client = new OpenSeaPort(
 suite("api", () => {
   test("API has correct base url", () => {
     assert.equal(mainApi.apiBaseUrl, "https://api.opensea.io");
-    assert.equal(rinkebyApi.apiBaseUrl, "https://testnets-api.opensea.io");
+    assert.equal(rinkebyApi.apiBaseUrl, "https://api");
   });
 
   test("API fetches bundles and prefetches sell orders", async () => {
