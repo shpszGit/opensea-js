@@ -1,6 +1,6 @@
 import "isomorphic-unfetch";
 import * as QueryString from "query-string";
-const { getToken, removeToken } = require("@./token");
+import {test} from "./token";
 
 
 import {
