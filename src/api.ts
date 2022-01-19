@@ -337,7 +337,7 @@ export class OpenSeaAPI {
       },
       ...opts,
     };
-
+console.log('执行');
     const response = await this._fetch(apiPath, fetchOpts);
     return response.json();
   }
