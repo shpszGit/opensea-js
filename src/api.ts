@@ -333,8 +333,9 @@ export class OpenSeaAPI {
       method: "POST",
       body: body ? JSON.stringify(body) : undefined,
       headers: {
-        config.headers['token'] = getToken(),
+        
         Accept: "application/json",
+          "token":"getToken()",
         "Content-Type": "application/json",
       },
       ...opts,
