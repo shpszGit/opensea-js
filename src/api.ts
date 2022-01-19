@@ -1,6 +1,6 @@
 import "isomorphic-unfetch";
 import * as QueryString from "query-string";
-import * as token from "./token";
+import  {getToken, removeToken}from "./token";
 
 import {
   API_BASE_MAINNET,
