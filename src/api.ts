@@ -336,7 +336,7 @@ export class OpenSeaAPI {
       headers: {
         
         Accept: "application/json",
-          "token":token,
+          "token":"123",
         "Content-Type": "application/json",
       },
       ...opts,
