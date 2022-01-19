@@ -1,6 +1,6 @@
 import "isomorphic-unfetch";
 import * as QueryString from "query-string";
-// import { getToken, removeToken } from 'C:/Users/何山/Desktop/shoop-vue/shoop_pc_web/src/utils/token.js';
+ import { getToken, removeToken } from './token.js';
 import {
   API_BASE_MAINNET,
   API_BASE_RINKEBY,
