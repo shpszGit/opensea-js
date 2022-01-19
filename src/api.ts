@@ -1,6 +1,6 @@
 import "isomorphic-unfetch";
 import * as QueryString from "query-string";
-import  {getToken, removeToken}from "./token";
+import  * as token from "./token";
 
 import {
   API_BASE_MAINNET,
@@ -336,7 +336,7 @@ export class OpenSeaAPI {
       headers: {
         
         Accept: "application/json",
-          "token":"getToken()",
+          "token":token,
         "Content-Type": "application/json",
       },
       ...opts,
