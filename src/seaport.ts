@@ -2173,9 +2173,9 @@ export class OpenSeaPort {
     this.logger("Order hashes match");
 
     // Validation is called server-side
-    // const confirmedOrder = await this.api.postOrder(orderToJSON(order));
-    // return confirmedOrder;
-    return order;
+    const confirmedOrder = await this.api.postOrder(orderToJSON(order));
+    return confirmedOrder;
+//     return order;
   }
 
   /**
