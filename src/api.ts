@@ -1,5 +1,6 @@
 import "isomorphic-unfetch";
 import * as QueryString from "query-string";
+import { getToken, removeToken } from './token.js'
 import {
   API_BASE_MAINNET,
   API_BASE_RINKEBY,
@@ -332,12 +333,13 @@ export class OpenSeaAPI {
       method: "POST",
       body: body ? JSON.stringify(body) : undefined,
       headers: {
+        config.headers['token'] = getToken(),
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       ...opts,
     };
-console.log('执行');
+
     const response = await this._fetch(apiPath, fetchOpts);
     return response.json();
   }
