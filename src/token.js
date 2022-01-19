@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie'
+import Cookies from 'js.cookie'
 const key = 'uid'
 // 保存token
 export function saveToken(token) {
