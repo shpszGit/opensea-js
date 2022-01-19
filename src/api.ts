@@ -1,6 +1,7 @@
 import "isomorphic-unfetch";
 import * as QueryString from "query-string";
-import  * as token from "./token";
+const { getToken, removeToken } = require("@./token");
+
 
 import {
   API_BASE_MAINNET,
