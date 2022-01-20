@@ -162,8 +162,8 @@ export class OpenSeaAPI {
     page = 1
   ): Promise<{ orders: Order[]; count: number }> {
     const result = await this.get(`${ORDERBOOK_PATH}/orders/`, 
-      limit: this.pageSize,
-      offset: (page - 1) * this.pageSize,
+      this.pageSize,
+      (page - 1) * this.pageSize,
       ...query,
     );
 
