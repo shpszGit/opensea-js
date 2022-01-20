@@ -162,9 +162,7 @@ export class OpenSeaAPI {
     page = 1
   ): Promise<{ orders: Order[]; count: number }> {
     const result = await this.get(`${ORDERBOOK_PATH}/orders/`, 
-      this.pageSize,
-      (page - 1) * this.pageSize,
-      ...query,
+      query.token_id,
     );
 
     if (ORDERBOOK_VERSION == 0) {
