@@ -86,12 +86,13 @@ export class OpenSeaAPI {
    * @param order Order JSON to post to the orderbook
    * @param retries Number of times to retry if the service is unavailable for any reason
    */
-  public async postOrder(order: OrderJSON, retries = 2): Promise<Order> {
+  public async postOrder(order: OrderJSON, token:string , retries = 2): Promise<Order> {
     let json;
     try {
       json = (await this.post(
         `${ORDERBOOK_PATH}/orders/post`,
-        order
+        order ,
+        token
       )) as OrderJSON;
     } catch (error) {
       _throwOrContinue(error, retries);
@@ -329,7 +330,8 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-    opts: RequestInit = {}
+    opts: RequestInit = {},
+    token:string
   ): Promise<T> {
     const fetchOpts = {
       method: "POST",
@@ -337,8 +339,9 @@ export class OpenSeaAPI {
       headers: {
         
         Accept: "application/json",
-          "token":"123",
+          "token":token,
         "Content-Type": "application/json",
+          
       },
       ...opts,
     };
