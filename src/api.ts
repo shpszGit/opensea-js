@@ -132,12 +132,12 @@ export class OpenSeaAPI {
    *  on the `OrderJSON` type is supported
    */
   public async getOrder(query: OrderQuery): Promise<Order> {
-    const data = await this.get(`${ORDERBOOK_PATH}/orders/`, {
+    const result = await this.get(`${ORDERBOOK_PATH}/orders/`, {
       limit: 1,
       ...query,
     });
-    const result1 = JSON.parse(JSON.stringify(data));
-    const result = result1.data;
+//     const result1 = JSON.parse(JSON.stringify(data));
+//     const result = result1.data;
     let orderJSON;
     if (ORDERBOOK_VERSION == 0) {
       const json = result as OrderJSON[];
@@ -149,7 +149,7 @@ export class OpenSeaAPI {
     if (!orderJSON) {
       throw new Error(`Not found: no matching order found`);
     }
-    return orderFromJSON(orderJSON);
+    return orderFromJSON(result);
   }
 
   /**
