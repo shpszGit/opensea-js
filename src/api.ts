@@ -138,7 +138,8 @@ export class OpenSeaAPI {
       limit: 1,
       ...query,
     });
-    const result = data.data;
+    const result1 = JSON.parse(JSON.stringify(data));
+    const result = result1.data;
     let orderJSON;
     if (ORDERBOOK_VERSION == 0) {
       const json = result as OrderJSON[];
