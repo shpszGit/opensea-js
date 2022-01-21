@@ -98,9 +98,10 @@ export class OpenSeaAPI {
       await delay(3000);
       return this.postOrder(order, retries - 1);
     }
-    
+    const result =JSON.parse(json);
     debugger
-    return orderFromJSON(json);
+    console.log(result.data);
+    return orderFromJSON(result.data);
   }
 
   /**
