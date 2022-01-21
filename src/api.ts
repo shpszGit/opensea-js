@@ -91,8 +91,7 @@ export class OpenSeaAPI {
     try {
       json = (await this.post(
         `${ORDERBOOK_PATH}/orders/post`,
-        order ,
-        token
+        order 
       )) as OrderJSON;
     } catch (error) {
       _throwOrContinue(error, retries);
@@ -330,8 +329,9 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-    opts: RequestInit = {},
-    token?:string
+    token?:string,
+    opts: RequestInit = {}
+    
   ): Promise<T> {
     const fetchOpts = {
       method: "POST",
