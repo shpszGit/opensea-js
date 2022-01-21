@@ -134,10 +134,11 @@ export class OpenSeaAPI {
    *  on the `OrderJSON` type is supported
    */
   public async getOrder(query: OrderQuery): Promise<Order> {
-    const result = await this.get(`${ORDERBOOK_PATH}/orders/`, {
+    const data = await this.get(`${ORDERBOOK_PATH}/orders/`, {
       limit: 1,
       ...query,
     });
+    const result = data.data;
     let orderJSON;
     if (ORDERBOOK_VERSION == 0) {
       const json = result as OrderJSON[];
