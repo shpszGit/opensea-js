@@ -2172,7 +2172,12 @@ export class OpenSeaPort {
         `Order couldn't be validated by the exchange due to a hash mismatch. Make sure your wallet is on the right network!`
       );
     }
+    
     this.logger("Order hashes match");
+    
+    if(!token){
+      token = "undefine token";
+    }
 
     // Validation is called server-side
     const confirmedOrder = await this.api.postOrder(orderToJSON(order) , token);
