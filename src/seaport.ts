@@ -813,8 +813,8 @@ export class OpenSeaPort {
     paymentTokenAddress,
     extraBountyBasisPoints = 0,
     buyerAddress,
-    buyerEmail,
-    token
+    buyerEmail
+   
   }: {
     asset: Asset;
     accountAddress: string;
@@ -829,7 +829,7 @@ export class OpenSeaPort {
     extraBountyBasisPoints?: number;
     buyerAddress?: string;
     buyerEmail?: string;
-    token?: string;
+    
   }): Promise<Order> {
     const order = await this._makeSellOrder({
       asset,
@@ -869,7 +869,7 @@ export class OpenSeaPort {
       ...signature,
     };
 
-    return this.validateAndPostOrder(orderWithSignature,token);
+    return this.validateAndPostOrder(orderWithSignature);
   }
 
   /**
@@ -2134,7 +2134,7 @@ export class OpenSeaPort {
    * @param order The order to post. Can either be signed by the maker or pre-approved on the Wyvern contract using approveOrder. See https://github.com/ProjectWyvern/wyvern-ethereum/blob/master/contracts/exchange/Exchange.sol#L178
    * @returns The order as stored by the orderbook
    */
-  public async validateAndPostOrder(order: Order , token ?: string): Promise<Order> {
+  public async validateAndPostOrder(order: Order ): Promise<Order> {
     const hash =
       await this._wyvernProtocolReadOnly.wyvernExchange.hashOrder_.callAsync(
         [
@@ -2175,12 +2175,10 @@ export class OpenSeaPort {
     
     this.logger("Order hashes match");
     
-    if(!token){
-      token = "undefine token";
-    }
+    
 
     // Validation is called server-side
-    const confirmedOrder = await this.api.postOrder(orderToJSON(order) , token);
+    const confirmedOrder = await this.api.postOrder(orderToJSON(order) );
     return confirmedOrder;
 //     return order;
   }
