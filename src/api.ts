@@ -329,7 +329,7 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-    token?: string,
+    
     opts: RequestInit = {}
     
   ): Promise<T> {
@@ -340,7 +340,7 @@ export class OpenSeaAPI {
       headers: {
         
         Accept: "application/json",
-          "token":token,
+          
         "Content-Type": "application/json",
           
       },
