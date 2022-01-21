@@ -136,19 +136,17 @@ export class OpenSeaAPI {
       limit: 1,
       ...query,
     });
-//     const result1 = JSON.parse(JSON.stringify(data));
-//     const result = result1.data;
-    let orderJSON;
-    if (ORDERBOOK_VERSION == 0) {
-      const json = result as OrderJSON[];
-      orderJSON = json[0];
-    } else {
-      const json = result as OrderbookResponse;
-      orderJSON = json.orders[0];
-    }
-    if (!orderJSON) {
-      throw new Error(`Not found: no matching order found`);
-    }
+//     let orderJSON;
+//     if (ORDERBOOK_VERSION == 0) {
+//       const json = result as OrderJSON[];
+//       orderJSON = json[0];
+//     } else {
+//       const json = result as OrderbookResponse;
+//       orderJSON = json.orders[0];
+//     }
+//     if (!orderJSON) {
+//       throw new Error(`Not found: no matching order found`);
+//     }
     return orderFromJSON(result);
   }
 
