@@ -831,7 +831,7 @@ export class OpenSeaPort {
     buyerEmail?: string;
     
   }): Promise<Order> {
-    const result = await this._makeSellOrder({
+    const order = await this._makeSellOrder({
       asset,
       quantity,
       accountAddress,
@@ -845,7 +845,7 @@ export class OpenSeaPort {
       extraBountyBasisPoints,
       buyerAddress: buyerAddress || NULL_ADDRESS,
     });
-    const order = result.data;
+    
 
     await this._sellOrderValidationAndApprovals({ order, accountAddress });
 
