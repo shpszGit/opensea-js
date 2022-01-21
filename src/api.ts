@@ -333,9 +333,7 @@ export class OpenSeaAPI {
     opts: RequestInit = {}
     
   ): Promise<T> {
-    if(!token ){
-      let token = "token undefine";
-    }
+    
     const fetchOpts = {
       method: "POST",
       body: body ? JSON.stringify(body) : undefined,
