@@ -329,7 +329,7 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-    token?:string,
+    token?: string|undefined,
     opts: RequestInit = {}
     
   ): Promise<T> {
