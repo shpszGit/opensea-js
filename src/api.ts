@@ -330,7 +330,7 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-    token?: string,
+//     token?: string,
     
     
     opts: RequestInit = {}
@@ -343,7 +343,7 @@ export class OpenSeaAPI {
       headers: {
         
         Accept: "application/json",
-          "token" : token,
+//           "token" : token,
         "Content-Type": "application/json",
           
       },
@@ -361,8 +361,8 @@ export class OpenSeaAPI {
    * @param opts RequestInit opts, similar to Fetch API. If it contains
    *  a body, it won't be stringified.
    */
-  public async put(apiPath: string, body: object, token?: string ,opts: RequestInit = {}) {
-    return this.post(apiPath, body, token,{
+  public async put(apiPath: string, body: object ,opts: RequestInit = {}) {
+    return this.post(apiPath, body, {
       method: "PUT",
       ...opts,
     });
