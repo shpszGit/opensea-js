@@ -1156,13 +1156,14 @@ export class OpenSeaPort {
    
     const { buy, sell } = assignOrdersToSides(order, matchingOrder);
     const metadata = this._getMetadata(order, referrerAddress);
-    this._dispatch(EventType.MatchOrders, {
-      buy,
-      sell,
-      accountAddress,
-      matchMetadata: metadata,
-    });
-      this._dispatch(EventType.CreateOrder,{buy});
+    
+//     this._dispatch(EventType.MatchOrders, {
+//       buy,
+//       sell,
+//       accountAddress,
+//       matchMetadata: metadata,
+//     });
+//       this._dispatch(EventType.CreateOrder,{buy});
    
     const transactionHash = await this._atomicMatch({
       buy,
