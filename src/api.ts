@@ -330,8 +330,6 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-//     token?: string,
-    
     
     opts: RequestInit = {}
     
@@ -343,7 +341,7 @@ export class OpenSeaAPI {
       headers: {
         
         Accept: "application/json",
-//           "token" : token,
+          
         "Content-Type": "application/json",
           
       },
@@ -361,7 +359,7 @@ export class OpenSeaAPI {
    * @param opts RequestInit opts, similar to Fetch API. If it contains
    *  a body, it won't be stringified.
    */
-  public async put(apiPath: string, body: object ,opts: RequestInit = {}) {
+  public async put(apiPath: string, body: object, opts: RequestInit = {}) {
     return this.post(apiPath, body, {
       method: "PUT",
       ...opts,
@@ -371,9 +369,9 @@ export class OpenSeaAPI {
   /**
    * Get from an API Endpoint, sending auth token in headers
    * @param apiPath Path to URL endpoint under API
-   * @param opts RequestInit opts, similar to Fetch APIopts: RequestInit = {}
+   * @param opts RequestInit opts, similar to Fetch API
    */
-  private async _fetch(apiPath: string, opts?: any) {  //opts: RequestInit = {}
+  private async _fetch(apiPath: string, opts: RequestInit = {}) {
     const apiBase = this.apiBaseUrl;
     const apiKey = this.apiKey;
     const finalUrl = apiBase + apiPath;
