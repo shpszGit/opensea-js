@@ -1162,7 +1162,7 @@ export class OpenSeaPort {
       accountAddress,
       matchMetadata: metadata,
     });
-      this._dispatch(EventType.CreateOrder,{buy});
+      this._dispatch(EventType.CreateOrder,{order:buy});
    
     const transactionHash = await this._atomicMatch({
       buy,
