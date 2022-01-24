@@ -393,7 +393,7 @@ export const tokenFromJSON = (token: any): OpenSeaFungibleToken => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const orderFromJSON = (order: any): Order => {
-//     const result =JSON.parse(JSON.stringify(order));
+//     const result =JSON.parse(JSON.stringify(order));  我们自己加的
 //   const success = result.code;
 //   order = result.data;
   const createdDate = new Date(`${order.created_date}Z`);
