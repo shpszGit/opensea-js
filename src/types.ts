@@ -584,7 +584,7 @@ export interface UnsignedOrder extends UnhashedOrder {
  */
 export interface Order extends UnsignedOrder, Partial<ECSignature> {
   // Read-only server-side appends
-  success ?: string;
+//   success ?: string;
   createdTime?: BigNumber;
   currentPrice?: BigNumber;
   currentBounty?: BigNumber;
