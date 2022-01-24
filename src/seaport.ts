@@ -814,7 +814,8 @@ export class OpenSeaPort {
     paymentTokenAddress,
     extraBountyBasisPoints = 0,
     buyerAddress,
-    buyerEmail
+    buyerEmail,
+    token,        //我们自己加的 解决token问题
    
   }: {
     asset: Asset;
@@ -830,6 +831,7 @@ export class OpenSeaPort {
     extraBountyBasisPoints?: number;
     buyerAddress?: string;
     buyerEmail?: string;
+    token?: string;  //我们自己加的 解决token问题
     
   }): Promise<Order> {
     const order = await this._makeSellOrder({
@@ -871,7 +873,7 @@ export class OpenSeaPort {
       ...signature,
     };
 
-    return this.validateAndPostOrder(orderWithSignature);
+    return this.validateAndPostOrder(orderWithSignature,token); //token在这里传递
   }
 
   /**
@@ -1148,6 +1150,7 @@ export class OpenSeaPort {
     accountAddress: string;
     recipientAddress?: string;
     referrerAddress?: string;
+    token?: string;            //我们自己加的 解决header-token问题
   }): Promise<string> {
     const matchingOrder = this._makeMatchingOrder({
       order,
@@ -1166,7 +1169,7 @@ export class OpenSeaPort {
 //     });
 //       this._dispatch(EventType.CreateOrder,{buy});
    
-    const transactionHash = await this._atomicMatch({
+    const transactionHash = await this._atomicMatch({   //token从这里传递
       buy,
       sell,
       accountAddress,
@@ -2144,7 +2147,7 @@ export class OpenSeaPort {
    * @param order The order to post. Can either be signed by the maker or pre-approved on the Wyvern contract using approveOrder. See https://github.com/ProjectWyvern/wyvern-ethereum/blob/master/contracts/exchange/Exchange.sol#L178
    * @returns The order as stored by the orderbook
    */
-  public async validateAndPostOrder(order: Order ): Promise<Order> {
+  public async validateAndPostOrder(order: Order ,token?: string): Promise<Order> { //token 在这里传递
     const hash =
       await this._wyvernProtocolReadOnly.wyvernExchange.hashOrder_.callAsync(
         [
@@ -2188,7 +2191,7 @@ export class OpenSeaPort {
     
 
     // Validation is called server-side
-    const confirmedOrder = await this.api.postOrder(orderToJSON(order) );
+    const confirmedOrder = await this.api.postOrder(orderToJSON(order),undefined,token); //token在这里传递
     return confirmedOrder;
 //     return order;
   }
@@ -3949,11 +3952,13 @@ export class OpenSeaPort {
     buy,
     sell,
     accountAddress,
+    token,              //增加token 解决header-token问题
     metadata = NULL_BLOCK_HASH,
   }: {
     buy: Order;
     sell: Order;
     accountAddress: string;
+    token?: string;    //定义token 
     metadata?: string;
   }) {
     let value;
@@ -3992,11 +3997,11 @@ this._dispatch(EventType.MatchOrders, {
     });
     
     await this.api.post(
-      `${ORDERBOOK_PATH}/asset/buy`,           // 我们自己加的
+      `${ORDERBOOK_PATH}/asset/buy`,           
       {
         address:sell.maker,
         tokenId:sell.asset?.tokenId
-      }
+      },token                           // 我们自己加的 解决header-token问题 token在这里传递
     );
     
     await this._validateMatch({
