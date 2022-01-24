@@ -86,17 +86,18 @@ export class OpenSeaAPI {
    * @param order Order JSON to post to the orderbook
    * @param retries Number of times to retry if the service is unavailable for any reason
    */
-  public async postOrder(order: OrderJSON,  retries = 2): Promise<Order> {
+  public async postOrder(order: OrderJSON,   retries = 2 ,token?: string ): Promise<Order> { //token在这里传递
     let json;
     try {
       json = (await this.post(
         `${ORDERBOOK_PATH}/orders/post`,
-        order 
+        order,
+         token                                   //token在这里传递
       )) as OrderJSON;
     } catch (error) {
       _throwOrContinue(error, retries);
       await delay(3000);
-      return this.postOrder(order, retries - 1);
+      return this.postOrder(order, retries - 1,token);
     }
    
     return orderFromJSON(json);
@@ -330,7 +331,7 @@ export class OpenSeaAPI {
   public async post<T>(
     apiPath: string,
     body?: object,
-    
+    token?: string,             //token传到这里
     opts: RequestInit = {}
     
   ): Promise<T> {
@@ -343,7 +344,7 @@ export class OpenSeaAPI {
         Accept: "application/json",
           
         "Content-Type": "application/json",
-          
+          "token":token,                //token在这里调用
       },
       ...opts,
     };
@@ -359,7 +360,7 @@ export class OpenSeaAPI {
    * @param opts RequestInit opts, similar to Fetch API. If it contains
    *  a body, it won't be stringified.
    */
-  public async put(apiPath: string, body: object, opts: RequestInit = {}) {
+  public async put(apiPath: string, body: object, opts: any = {}) { //opts: RequestInit = {}  修改opts数据类型
     return this.post(apiPath, body, {
       method: "PUT",
       ...opts,
@@ -371,7 +372,7 @@ export class OpenSeaAPI {
    * @param apiPath Path to URL endpoint under API
    * @param opts RequestInit opts, similar to Fetch API
    */
-  private async _fetch(apiPath: string, opts: RequestInit = {}) {
+  private async _fetch(apiPath: string, opts: any = {}) { //opts: RequestInit = {}      修改opts数据类型
     const apiBase = this.apiBaseUrl;
     const apiKey = this.apiKey;
     const finalUrl = apiBase + apiPath;
