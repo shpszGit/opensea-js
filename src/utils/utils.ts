@@ -393,13 +393,13 @@ export const tokenFromJSON = (token: any): OpenSeaFungibleToken => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const orderFromJSON = (order: any): Order => {
-    const result =JSON.parse(JSON.stringify(order));
-  const success = result.code;
-  order = result.data;
+//     const result =JSON.parse(JSON.stringify(order));
+//   const success = result.code;
+//   order = result.data;
   const createdDate = new Date(`${order.created_date}Z`);
 
   const fromJSON: Order = {
-     success: success,
+//      success: success,
     hash: order.order_hash || order.hash,
     cancelledOrFinalized: order.cancelled || order.finalized,
     markedInvalid: order.marked_invalid,
