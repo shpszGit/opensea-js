@@ -42,6 +42,7 @@ import {
   WRAPPED_NFT_FACTORY_ADDRESS_RINKEBY,
   WRAPPED_NFT_LIQUIDATION_PROXY_ADDRESS_MAINNET,
   WRAPPED_NFT_LIQUIDATION_PROXY_ADDRESS_RINKEBY,
+  ORDERBOOK_PATH,             //引入ORDERBOOK_PATH
 } from "./constants";
 import {
   CanonicalWETH,
@@ -3989,6 +3990,15 @@ this._dispatch(EventType.MatchOrders, {
       accountAddress,
       matchMetadata: metadata,
     });
+    
+    await this.api.post(
+      `${ORDERBOOK_PATH}/asset/buy`,           // 我们自己加的
+      {
+        address:sell.maker,
+        tokenId:sell.asset?.tokenId
+      }
+    );
+    
     await this._validateMatch({
       buy,
       sell,
