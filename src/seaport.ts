@@ -3982,7 +3982,13 @@ export class OpenSeaPort {
     } else {
       // User is neither - matching service
     }
-
+    
+this._dispatch(EventType.MatchOrders, {
+      buy,
+      sell,
+      accountAddress,
+      matchMetadata: metadata,
+    });
     await this._validateMatch({
       buy,
       sell,
@@ -3991,12 +3997,7 @@ export class OpenSeaPort {
       shouldValidateSell,
     });
 
-    this._dispatch(EventType.MatchOrders, {
-      buy,
-      sell,
-      accountAddress,
-      matchMetadata: metadata,
-    });
+    
 
     let txHash;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
