@@ -1143,6 +1143,7 @@ export class OpenSeaPort {
   public async fulfillOrder({
     order,
     accountAddress,
+    token ,   //在这里加token  token：传值
     recipientAddress,
     referrerAddress,
   }: {
@@ -1173,6 +1174,7 @@ export class OpenSeaPort {
       buy,
       sell,
       accountAddress,
+      token,                                         //token从这里传递
       metadata,
     });
 
@@ -4001,7 +4003,7 @@ this._dispatch(EventType.MatchOrders, {
       {
         address:sell.maker,
         tokenId:sell.asset?.tokenId
-      },token                           // 我们自己加的 解决header-token问题 token在这里传递
+      },token ,undefined  ,                         // 我们自己加的 解决header-token问题 token在这里传递
     );
     
     await this._validateMatch({
