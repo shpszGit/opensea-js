@@ -317,7 +317,7 @@ export class OpenSeaAPI {
     const qs = QueryString.stringify(query);
     const url = `${apiPath}?${qs}`;
 
-    const response = await this._fetch(url,token);              //传递token 
+    const response = await this._fetch(url,undefined,token);              //传递token 
     return response.json();
   }
 
