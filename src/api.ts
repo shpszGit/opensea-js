@@ -132,11 +132,11 @@ export class OpenSeaAPI {
    * @param query Query to use for getting orders. A subset of parameters
    *  on the `OrderJSON` type is supported
    */
-  public async getOrder(query: OrderQuery): Promise<Order> {
+  public async getOrder(query: OrderQuery , token?:string): Promise<Order> {  //接收token  
     const result = await this.get(`${ORDERBOOK_PATH}/orders/`, {
       limit: 1,
-      ...query,
-    });
+      ...query,            
+    },token);        //传递token
 //     let orderJSON;
 //     if (ORDERBOOK_VERSION == 0) {
 //       const json = result as OrderJSON[];
@@ -313,11 +313,11 @@ export class OpenSeaAPI {
    * @param apiPath Path to URL endpoint under API
    * @param query Data to send. Will be stringified using QueryString
    */
-  public async get<T>(apiPath: string, query: object = {}): Promise<T> {
+  public async get<T>(apiPath: string, query: object = {},token?: string): Promise<T> { //接收token 
     const qs = QueryString.stringify(query);
     const url = `${apiPath}?${qs}`;
 
-    const response = await this._fetch(url);
+    const response = await this._fetch(url,token);              //传递token 
     return response.json();
   }
 
@@ -372,13 +372,14 @@ export class OpenSeaAPI {
    * @param apiPath Path to URL endpoint under API
    * @param opts RequestInit opts, similar to Fetch API
    */
-  private async _fetch(apiPath: string, opts: any = {}) { //opts: RequestInit = {}      修改opts数据类型
+  private async _fetch(apiPath: string, opts: any = {},token?: string) { //opts: RequestInit = {}      修改opts数据类型
     const apiBase = this.apiBaseUrl;
     const apiKey = this.apiKey;
     const finalUrl = apiBase + apiPath;
     const finalOpts = {
       ...opts,
       headers: {
+        "token":token,                         //增加token在header
         ...(apiKey ? { "X-API-KEY": apiKey } : {}),
         ...(opts.headers || {}),
       },
