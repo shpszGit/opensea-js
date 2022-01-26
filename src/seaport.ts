@@ -1182,6 +1182,7 @@ export class OpenSeaPort {
       transactionHash,
       EventType.MatchOrders,
       "Fulfilling order",
+      buy,              //add buy Order
       async () => {
         const isOpen = await this._validateOrder(order);
         return !isOpen;
@@ -4245,9 +4246,10 @@ this._dispatch(EventType.MatchOrders, {
     transactionHash: string,
     event: EventType,
     description: string,
+    buy?: Order,            //接收buy order
     testForSuccess?: () => Promise<boolean>
   ): Promise<void> {
-    const transactionEventData = { transactionHash, event };
+    const transactionEventData = { transactionHash, event , buy };  //接收buy
     this.logger(`Transaction started: ${description}`);
 
     if (transactionHash == NULL_BLOCK_HASH) {
@@ -4273,7 +4275,7 @@ this._dispatch(EventType.MatchOrders, {
       this._dispatch(EventType.TransactionCreated, transactionEventData);
       await confirmTransaction(this.web3, transactionHash);
       this.logger(`Transaction succeeded: ${description}`);
-      this._dispatch(EventType.TransactionConfirmed, transactionEventData);
+      this._dispatch(EventType.TransactionConfirmed, transactionEventData); //监听这个事件TransactionConfirmed
     } catch (error) {
       this.logger(`Transaction failed: ${description}`);
       this._dispatch(EventType.TransactionFailed, {
