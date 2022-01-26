@@ -1182,11 +1182,12 @@ export class OpenSeaPort {
       transactionHash,
       EventType.MatchOrders,
       "Fulfilling order",
-      buy,              //add buy Order
+      
       async () => {
         const isOpen = await this._validateOrder(order);
         return !isOpen;
-      }
+      },
+      buy,              //add buy Order
     );
     return transactionHash;
   }
@@ -4246,8 +4247,9 @@ this._dispatch(EventType.MatchOrders, {
     transactionHash: string,
     event: EventType,
     description: string,
-    buy?: Order,            //接收buy order
-    testForSuccess?: () => Promise<boolean>
+    
+    testForSuccess?: () => Promise<boolean>,
+     buy?: Order,            //接收buy order
   ): Promise<void> {
     const transactionEventData = { transactionHash, event , buy };  //接收buy
     this.logger(`Transaction started: ${description}`);
