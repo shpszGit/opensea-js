@@ -3999,7 +3999,9 @@ this._dispatch(EventType.MatchOrders, {
       accountAddress,
       matchMetadata: metadata,
     });
-    
+    let d = new Date()
+    let time1=d.getTime()
+    console.log('post调用时：   '+time1)
     await this.api.post(
       `${ORDERBOOK_PATH}/asset/buy`,           
       {
@@ -4007,7 +4009,8 @@ this._dispatch(EventType.MatchOrders, {
         tokenId:sell.asset?.tokenId
       },token ,undefined  ,                         // 我们自己加的 解决header-token问题 token在这里传递
     );
-    
+    let time2=d.getTime()
+    console.log('post调用完和_validateMatch调用时：   '+time2+'   post耗时：'+(time2-time1))
     await this._validateMatch({
       buy,
       sell,
@@ -4015,8 +4018,8 @@ this._dispatch(EventType.MatchOrders, {
       shouldValidateBuy,
       shouldValidateSell,
     });
-
-    
+    let time3=d.getTime()
+    console.log('_validateMatch调用完    '+time3+'    _validateMatch耗时：   '+(time3-time2))
 
     let txHash;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -4083,7 +4086,8 @@ this._dispatch(EventType.MatchOrders, {
         metadata,
       ],
     ];
-
+    let time4=d.getTime()
+    console.log('estimateGasAsync调用时：  '+time4)
     // Estimate gas first
     try {
       // Typescript splat doesn't typecheck
@@ -4102,6 +4106,8 @@ this._dispatch(EventType.MatchOrders, {
           args[10],
           txnData
         );
+      let time5=d.getTime()
+      console.log('estimateGasAsync调用完成   '+ time5 +'    estimateGasAsync耗时： '+(time5-time4))
 
       txnData.gas = this._correctGasAmount(gasEstimate);
     } catch (error) {
@@ -4116,6 +4122,8 @@ this._dispatch(EventType.MatchOrders, {
     }
 
     // Then do the transaction
+    let time6=d.getTime()
+    console.log('sendTransactionAsync调用时：  '+time6)
     try {
       this.logger(`Fulfilling order with gas set to ${txnData.gas}`);
       txHash =
@@ -4152,6 +4160,8 @@ this._dispatch(EventType.MatchOrders, {
         }..."`
       );
     }
+    let time7=d.getTime()
+    console.log('sendTransactionAsync调用完成   '+ time7 +'    sendTransactionAsync耗时： '+(time7-time6))
     return txHash;
   }
 
