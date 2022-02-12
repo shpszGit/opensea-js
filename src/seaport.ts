@@ -4000,7 +4000,7 @@ this._dispatch(EventType.MatchOrders, {
       matchMetadata: metadata,
     });
 
-    console.time("post耗时");
+  var time1 = new Date().getTime()
     await this.api.post(
       `${ORDERBOOK_PATH}/asset/buy`,           
       {
@@ -4008,7 +4008,8 @@ this._dispatch(EventType.MatchOrders, {
         tokenId:sell.asset?.tokenId
       },token ,undefined  ,                         // 我们自己加的 解决header-token问题 token在这里传递
     );
-    console.timeEnd("post耗时");
+    var time2 = new Date().getTime()
+    console.log('post耗时:'+(time2-time1)/1000+'s')
     console.time("_validateMatch耗时");
     await this._validateMatch({
       buy,
