@@ -4000,7 +4000,7 @@ this._dispatch(EventType.MatchOrders, {
       matchMetadata: metadata,
     });
 
-  var time1 = new Date().getTime()
+    var time1 = new Date().getTime()
     await this.api.post(
       `${ORDERBOOK_PATH}/asset/buy`,           
       {
@@ -4010,7 +4010,8 @@ this._dispatch(EventType.MatchOrders, {
     );
     var time2 = new Date().getTime()
     console.log('post耗时:'+(time2-time1)/1000+'s')
-    console.time("_validateMatch耗时");
+    
+    var time3 = new Date().getTime()
     await this._validateMatch({
       buy,
       sell,
@@ -4018,7 +4019,8 @@ this._dispatch(EventType.MatchOrders, {
       shouldValidateBuy,
       shouldValidateSell,
     });
-    console.timeEnd("_validateMatch耗时");
+    var time4 = new Date().getTime()
+    console.log('_validateMatch耗时:'+(time4-time3)/1000+'s')
 
     let txHash;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -4085,8 +4087,10 @@ this._dispatch(EventType.MatchOrders, {
         metadata,
       ],
     ];
-    console.time("estimateGasAsync耗时");
+    
+    
     // Estimate gas first
+    var time5 = new Date().getTime()
     try {
       // Typescript splat doesn't typecheck
       const gasEstimate =
@@ -4104,8 +4108,6 @@ this._dispatch(EventType.MatchOrders, {
           args[10],
           txnData
         );
-      console.timeEnd("estimateGasAsync耗时");
-
       txnData.gas = this._correctGasAmount(gasEstimate);
     } catch (error) {
       console.error(`Failed atomic match with args: `, args, error);
@@ -4117,9 +4119,10 @@ this._dispatch(EventType.MatchOrders, {
         }..."`
       );
     }
-
+    var time6 = new Date().getTime()
+    console.log('estimateGasAsync耗时:'+(time6-time5)/1000+'s')
     // Then do the transaction
-    console.time("sendTransactionAsync耗时");
+    var time7 = new Date().getTime()
 
     try {
       this.logger(`Fulfilling order with gas set to ${txnData.gas}`);
@@ -4157,7 +4160,8 @@ this._dispatch(EventType.MatchOrders, {
         }..."`
       );
     }
-    console.timeEnd("sendTransactionAsync耗时");
+    var time8 = new Date().getTime()
+    console.log('sendTransactionAsync耗时:'+(time8-time7)/1000+'s')
     return txHash;
   }
 
