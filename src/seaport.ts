@@ -3993,12 +3993,12 @@ export class OpenSeaPort {
       // User is neither - matching service
     }
     
-this._dispatch(EventType.MatchOrders, {
-      buy,
-      sell,
-      accountAddress,
-      matchMetadata: metadata,
-    });
+// this._dispatch(EventType.MatchOrders, {     注释掉MatchOrders
+//       buy,
+//       sell,
+//       accountAddress,
+//       matchMetadata: metadata,
+//     });
 
     var time1 = new Date().getTime()
     await this.api.post(
