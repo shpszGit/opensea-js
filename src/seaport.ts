@@ -124,7 +124,8 @@ import {
   sendRawTransaction,
   validateAndFormatWalletAddress,
 } from "./utils/utils";
-
+let time7 = 0;
+let time8 = 0;
 export class OpenSeaPort {
   // Web3 instance to use
   public web3: Web3;
@@ -4160,8 +4161,7 @@ export class OpenSeaPort {
         }..."`
       );
     }
-    var time8 = new Date().getTime()
-    console.log('sendTransactionAsync耗时:'+(time8-time7)/1000+'s')
+    
     return txHash;
   }
 
@@ -4288,12 +4288,20 @@ export class OpenSeaPort {
       await confirmTransaction(this.web3, transactionHash);
       this.logger(`Transaction succeeded: ${description}`);
       this._dispatch(EventType.TransactionConfirmed, transactionEventData); //监听这个事件TransactionConfirmed
+      time8=new Date().getTime() 
+      if(time8&&time7){
+        console.log(time8-time7) //输出耗时
+      }
     } catch (error) {
       this.logger(`Transaction failed: ${description}`);
       this._dispatch(EventType.TransactionFailed, {
         ...transactionEventData,
         error,
       });
+      time8=new Date().getTime() 
+      if(time8&&time7){
+        console.log(time8-time7) //输出耗时
+      }
       throw error;
     }
   }
