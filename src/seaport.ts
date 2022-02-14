@@ -4123,7 +4123,7 @@ export class OpenSeaPort {
     var time6 = new Date().getTime()
     console.log('estimateGasAsync耗时:'+(time6-time5)/1000+'s')
     // Then do the transaction
-    var time7 = new Date().getTime()
+     time7 = new Date().getTime()
 
     try {
       this.logger(`Fulfilling order with gas set to ${txnData.gas}`);
