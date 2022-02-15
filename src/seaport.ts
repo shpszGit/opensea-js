@@ -4290,7 +4290,7 @@ export class OpenSeaPort {
       this._dispatch(EventType.TransactionConfirmed, transactionEventData); //监听这个事件TransactionConfirmed
       time8=new Date().getTime() 
       if(time8&&time7){
-        console.log(time8-time7) //输出耗时
+        console.log('钱包完成交易耗时:'+(time8-time7)/1000+'s')
       }
     } catch (error) {
       this.logger(`Transaction failed: ${description}`);
@@ -4300,7 +4300,7 @@ export class OpenSeaPort {
       });
       time8=new Date().getTime() 
       if(time8&&time7){
-        console.log(time8-time7) //输出耗时
+        console.log('钱包发现错误耗时:'+(time8-time7)/1000+'s')
       }
       throw error;
     }
