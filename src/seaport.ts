@@ -4122,6 +4122,7 @@ export class OpenSeaPort {
     }
     var time6 = new Date().getTime()
     console.log('estimateGasAsync耗时:'+(time6-time5)/1000+'s')
+      this._dispatch(EventType.MatchOrders,{proxyAddress:'unLading'} ) //告诉前端不要loading了
     // Then do the transaction
      time7 = new Date().getTime()
 
