@@ -3890,9 +3890,9 @@ export class OpenSeaPort {
         `English auctions must use wrapped ETH or an ERC-20 token.`
       );
     }
-    if (isEther && orderSide === OrderSide.Buy) {
-      throw new Error(`Offers must use wrapped ETH or an ERC-20 token.`);
-    }
+//     if (isEther && orderSide === OrderSide.Buy) {
+//       throw new Error(`Offers must use wrapped ETH or an ERC-20 token.`);
+//     }
     if (priceDiff < 0) {
       throw new Error(
         "End price must be less than or equal to the start price."
