@@ -3862,7 +3862,7 @@ export class OpenSeaPort {
    * @param endAmount The end value for the order, in the token's main units (e.g. ETH instead of wei). If unspecified, the order's `extra` attribute will be 0
    */
   private async _getPriceParameters(
-//     orderSide: OrderSide,
+    orderSide: OrderSide,
     tokenAddress: string,
     expirationTime: number,
     startAmount: number,
@@ -3890,9 +3890,9 @@ export class OpenSeaPort {
         `English auctions must use wrapped ETH or an ERC-20 token.`
       );
     }
-//     if (isEther && orderSide === OrderSide.Buy) {
-//       throw new Error(`Offers must use wrapped ETH or an ERC-20 token.`);
-//     }
+    if (isEther && orderSide === OrderSide.Buy) {
+      throw new Error(`Offers must use wrapped ETH or an ERC-20 token.`);
+    }
     if (priceDiff < 0) {
       throw new Error(
         "End price must be less than or equal to the start price."
