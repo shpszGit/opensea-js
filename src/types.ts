@@ -60,6 +60,7 @@ export enum EventType {
   UnwrapAssets = "UnwrapAssets",
   LiquidateAssets = "LiquidateAssets",
   PurchaseAssets = "PurchaseAssets",
+  Unloading='Unloading',  //新增Unloading事件
 }
 
 /**
@@ -82,6 +83,7 @@ export interface EventData {
   buy?: Order;
   sell?: Order;
   matchMetadata?: string;
+  loadingData?:string; // 新增loadingData属性
 }
 
 /**
