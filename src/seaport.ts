@@ -3862,7 +3862,7 @@ export class OpenSeaPort {
    * @param endAmount The end value for the order, in the token's main units (e.g. ETH instead of wei). If unspecified, the order's `extra` attribute will be 0
    */
   private async _getPriceParameters(
-    orderSide: OrderSide,
+//     orderSide: OrderSide,
     tokenAddress: string,
     expirationTime: number,
     startAmount: number,
