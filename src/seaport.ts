@@ -731,6 +731,7 @@ export class OpenSeaPort {
     paymentTokenAddress,
     sellOrder,
     referrerAddress,
+    token,        //我们自己加的 解决buyOrder token问题
   }: {
     asset: Asset;
     accountAddress: string;
@@ -740,6 +741,7 @@ export class OpenSeaPort {
     paymentTokenAddress?: string;
     sellOrder?: Order;
     referrerAddress?: string;
+    token?:string;  //我们自己加的 解决buyOrder token问题
   }): Promise<Order> {
     paymentTokenAddress =
       paymentTokenAddress ||
@@ -778,7 +780,7 @@ export class OpenSeaPort {
       ...hashedOrder,
       ...signature,
     };
-    return this.validateAndPostOrder(orderWithSignature);
+    return this.validateAndPostOrder(orderWithSignature,token);//我们自己加的 解决buyOrder token问题
   }
 
   /**
