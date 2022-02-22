@@ -57,7 +57,7 @@ export const ORDERBOOK_VERSION = 1 as number;
 export const API_BASE_MAINNET = "https://api.opensea.io";
 
 // export const API_BASE_RINKEBY = "http://demo.shpsz.cn:8081";  //修改服务器地址
-export const API_BASE_RINKEBY = "http://front.shpsz.cn:7001";  //修改服务器地址
+export const API_BASE_RINKEBY = "http://192.168.0.130:8080";  //修改服务器地址
 
 export const SITE_HOST_MAINNET = "https://opensea.io";
 export const SITE_HOST_RINKEBY = "https://rinkeby.opensea.io";
