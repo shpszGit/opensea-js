@@ -182,6 +182,9 @@ export class OpenSeaPort {
     // WyvernJS config
     this._wyvernProtocol = new WyvernProtocol(provider, {
       network: this._networkName,
+      wyvernExchangeContractAddress:'0x0bcc3b4a95dfd5ee476657d6dbb2c9f900ef14d1',  //修改为我们的配置
+      wyvernProxyRegistryContractAddress:'0xad207744d26bea8b4cd6a5e9769d97a090e8aed9',
+      wyvernAtomicizerContractAddress:'0xf9c5f4f906341b61c36ea75f3996400c531413f3',
     });
 
     // WyvernJS config for readonly (optimization for infura calls)
