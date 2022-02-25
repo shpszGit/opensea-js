@@ -2710,8 +2710,8 @@ export class OpenSeaPort {
       });
 
     return {
-//       exchange: WyvernProtocol.getExchangeContractAddress(this._networkName),  //默认值
-      exchange:'0x0bcc3b4a95dfd5ee476657d6dbb2c9f900ef14d1',   //写死
+      exchange: WyvernProtocol.getExchangeContractAddress(this._networkName),  //默认值
+//       exchange:'0x0bcc3b4a95dfd5ee476657d6dbb2c9f900ef14d1',   //写死
 //       exchange:this._wyvernProtocol.wyvernExchange.web3ContractInstance.address, //帮主给的写法
       maker: accountAddress,
       taker: buyerAddress,
