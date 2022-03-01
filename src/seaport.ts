@@ -2740,7 +2740,7 @@ export class OpenSeaPort {
       extra,
       listingTime: times.listingTime,
       expirationTime: times.expirationTime,
-      salt: WyvernProtocol.generatePseudoRandomSalt(),
+      salt: WyvernProtocol.generatePseudoRandomSalt().toString,
       metadata: {
         asset: wyAsset,
         schema: schema.name as WyvernSchemaName,
