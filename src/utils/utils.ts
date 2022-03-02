@@ -493,7 +493,7 @@ export const orderToJSON = (order: Order): OrderJSON => {
     listingTime: order.listingTime.toString(),
     expirationTime: order.expirationTime.toString(),
     salt: order.salt.toString(),
-
+    isBid:order.waitingForBestCounterOrder, //告诉后台是否为拍卖订单
     metadata: order.metadata,
 
     v: order.v,
