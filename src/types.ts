@@ -639,7 +639,7 @@ export interface OrderJSON extends Partial<ECSignature> {
   salt: string;
 
   metadata: ExchangeMetadata;
-  isBid : boolean; //修改OrderJSON的格式 告诉后台是否为拍卖订单
+  waitingForBestCounterOrder : boolean; //修改OrderJSON的格式 告诉后台是否为拍卖订单
   hash: string;
 }
 
