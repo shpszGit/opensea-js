@@ -8,7 +8,7 @@ import * as WyvernSchemas from "wyvern-schemas";
 import { Schema } from "wyvern-schemas/dist/types";
 import { OpenSeaAPI } from "./api";
 import {
-  CHEEZE_WIZARDS_BASIC_TOURNAMENT_ADDRESS,
+  CHEEZE_WIZARDS_BASIC_TOURNAMENT_ADDRESS, //2022.3.5的修改
   CHEEZE_WIZARDS_BASIC_TOURNAMENT_RINKEBY_ADDRESS,
   CHEEZE_WIZARDS_GUILD_ADDRESS,
   CHEEZE_WIZARDS_GUILD_RINKEBY_ADDRESS,
