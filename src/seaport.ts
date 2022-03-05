@@ -166,7 +166,7 @@ export class OpenSeaPort {
     this.api = new OpenSeaAPI(apiConfig);
 
     this._networkName = apiConfig.networkName;
-
+    console.log('hello test_2')
     const readonlyProvider = new Web3.providers.HttpProvider(
       `${this.api.apiBaseUrl}/${RPC_URL_PATH}`
     );
