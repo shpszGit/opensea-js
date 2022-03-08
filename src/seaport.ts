@@ -872,6 +872,7 @@ export class OpenSeaPort {
       signature = await this._authorizeOrder(hashedOrder);
     } catch (error) {
       console.error(error);
+      this._dispatch(EventType.Unloading,{loadingData:'shelvesUnLading'} ) //告诉前端上架取消loading
       throw new Error("You declined to authorize your auction");
     }
 
