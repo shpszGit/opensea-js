@@ -745,7 +745,7 @@ export class OpenSeaPort {
     sellOrder?: Order;
     referrerAddress?: string;
     token?:string;  //我们自己加的 解决buyOrder token问题
-  }): Promise<Order> {
+  }) { //        : Promise<Order>   删掉ts限制的返回值
     paymentTokenAddress =
       paymentTokenAddress ||
       WyvernSchemas.tokens[this._networkName].canonicalWrappedEther.address;
@@ -783,7 +783,8 @@ export class OpenSeaPort {
       ...hashedOrder,
       ...signature,
     };
-    return this.validateAndPostOrder(orderWithSignature,token);//我们自己加的 解决buyOrder token问题
+    return this.validateAndPostOrder(orderWithSignature,token) ,this._dispatch(EventType.Unloading,{loadingData:'shelvesUnLading'} ) ;
+      //token在这里传递 告诉前端关闭上架的loading
   }
 
   /**
