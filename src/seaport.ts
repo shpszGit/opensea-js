@@ -840,7 +840,7 @@ export class OpenSeaPort {
     buyerEmail?: string;
     token?: string;  //我们自己加的 解决token问题
     
-  }): Promise<Order> {
+  }) {  //取消返回值的限制 : Promise<Order>
     const order = await this._makeSellOrder({
       asset,
       quantity,
@@ -880,7 +880,7 @@ export class OpenSeaPort {
       ...signature,
     };
 
-    return this.validateAndPostOrder(orderWithSignature,token); //token在这里传递
+    return this.validateAndPostOrder(orderWithSignature,token) ,this._dispatch(EventType.Unloading,{loadingData:'shelvesUnLading'} ) ; //token在这里传递 告诉前端关闭上架的loading
   }
 
   /**
