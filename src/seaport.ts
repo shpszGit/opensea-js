@@ -657,6 +657,7 @@ export class OpenSeaPort {
     paymentTokenAddress,
     sellOrder,
     referrerAddress,
+    token    //createBundleBuyOrder添加token
   }: {
     assets: Asset[];
     collection?: { slug: string };
@@ -667,6 +668,7 @@ export class OpenSeaPort {
     paymentTokenAddress?: string;
     sellOrder?: Order;
     referrerAddress?: string;
+    token ?: string //为createBundleBuyOrder添加token
   }): Promise<Order> {
     // Default to 1 of each asset
     quantities = quantities || assets.map((_a) => 1);
@@ -708,7 +710,7 @@ export class OpenSeaPort {
       ...hashedOrder,
       ...signature,
     };
-    return this.validateAndPostOrder(orderWithSignature);
+    return this.validateAndPostOrder(orderWithSignature,token); //token在这里传递
   }
 
   /**
@@ -1077,6 +1079,7 @@ export class OpenSeaPort {
     paymentTokenAddress,
     extraBountyBasisPoints = 0,
     buyerAddress,
+    token   //为createBundleSellOrder添加token
   }: {
     bundleName: string;
     bundleDescription?: string;
@@ -1094,6 +1097,7 @@ export class OpenSeaPort {
     paymentTokenAddress?: string;
     extraBountyBasisPoints?: number;
     buyerAddress?: string;
+    token ?: string  //添加token 
   }): Promise<Order> {
     // Default to one of each asset
     quantities = quantities || assets.map((_a) => 1);
@@ -1136,7 +1140,7 @@ export class OpenSeaPort {
       ...signature,
     };
 
-    return this.validateAndPostOrder(orderWithSignature);
+    return this.validateAndPostOrder(orderWithSignature,token); //为createBundleSellOrder传递token
   }
 
   /**
