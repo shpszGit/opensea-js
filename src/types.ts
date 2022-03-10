@@ -61,6 +61,7 @@ export enum EventType {
   LiquidateAssets = "LiquidateAssets",
   PurchaseAssets = "PurchaseAssets",
   Unloading='Unloading',  //新增Unloading事件
+  Approve='Approve'//新增Approve事件
 }
 
 /**
