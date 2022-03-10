@@ -85,6 +85,7 @@ export interface EventData {
   sell?: Order;
   matchMetadata?: string;
   loadingData?:string; // 新增loadingData属性
+  Fee?:number;      //EventData中增加Fee
 }
 
 /**
