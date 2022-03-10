@@ -2446,6 +2446,7 @@ export class OpenSeaPort {
       ...txnData,
       gas: this._correctGasAmount(gasEstimate),
     };
+    this._dispatch(EventType.Unloading, { Fee:param.gas,loadingData:'我要初始化账号了'}); //告诉前端新用户要初始化账户了
 
     const transactionHash =
       await this._wyvernProtocol.wyvernProxyRegistry.registerProxy.sendTransactionAsync(
@@ -2472,7 +2473,9 @@ export class OpenSeaPort {
         "Failed to initialize your account :( Please restart your wallet/browser and try again!"
       );
     }
-
+    if(transactionHash){
+      this._dispatch(EventType.InitializeAccount, { loadingData:'初始化账号成功了'}); //告诉前端新用户初始化账户成功了;
+    }
     return proxyAddress;
   }
 
