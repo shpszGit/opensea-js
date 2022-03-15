@@ -186,6 +186,9 @@ export class OpenSeaPort {
 //       wyvernProxyRegistryContractAddress:'0xad207744d26bea8b4cd6a5e9769d97a090e8aed9',
 //       wyvernAtomicizerContractAddress:'0xf9c5f4f906341b61c36ea75f3996400c531413f3',
     });
+      
+      console.log(this._wyvernProtocol)
+      
 
     // WyvernJS config for readonly (optimization for infura calls)
     this._wyvernProtocolReadOnly = useReadOnlyProvider
