@@ -68,6 +68,10 @@ export class OpenSeaAPI {
         this.apiBaseUrl = config.apiBaseUrl || API_BASE_RINKEBY;
         this.hostUrl = SITE_HOST_RINKEBY;
         break;
+      case Network.mumbai:
+        this.apiBaseUrl = config.apiBaseUrl || API_BASE_RINKEBY;
+        this.hostUrl = SITE_HOST_RINKEBY;
+        break;
       case Network.Main:
       default:
         this.apiBaseUrl = config.apiBaseUrl || API_BASE_MAINNET;
