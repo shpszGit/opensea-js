@@ -686,7 +686,9 @@ export class OpenSeaPort {
       accountAddress,
       startAmount,
       expirationTime,
-      paymentTokenAddress,
+//       paymentTokenAddress, 
+      mentTokenAddress
+      paymentTokenAddress: paymentTokenAddress || NULL_ADDRESS,
       extraBountyBasisPoints: 0,
       sellOrder,
       referrerAddress,
@@ -761,7 +763,8 @@ export class OpenSeaPort {
       accountAddress,
       startAmount,
       expirationTime,
-      paymentTokenAddress,
+//       paymentTokenAddress,  修改paymentTokenAddress
+      paymentTokenAddress: paymentTokenAddress || NULL_ADDRESS,
       extraBountyBasisPoints: 0,
       sellOrder,
       referrerAddress,
