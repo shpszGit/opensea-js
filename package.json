@@ -39,8 +39,8 @@
     "lodash": "^4.17.21",
     "query-string": "^6.11.1",
     "web3": "0.20.7",
-    "wyvern-js": "git+https://github.com/miaoxingrenya/wyvern-js.git#polygon_v2",
-    "wyvern-schemas": "git+https://github.com/miaoxingrenya/wyvern-schemas.git#polygon_v2"
+    "wyvern-js": "git+https://github.com/miaoxingrenya/wyvern-js.git#polygon_v3",
+    "wyvern-schemas": "git+https://github.com/miaoxingrenya/wyvern-schemas.git#polygon_v3"
   },
   "devDependencies": {
     "@types/chai": "4.3.0",
